@@ -4,16 +4,35 @@ import { fetchData } from "../actions/weatherStation";
 
 
 class Dashboard extends Component {
+  
+  componentDidMount() {
+    setInterval(() => {this._updateCity();}, 300000);
+  }
 
   _updateCity = () => {
     const city = this.__cityInput.value;
     if(city.length !== 0) this.props.dispatch(fetchData(city));
   }
-
+  
   _onkeyPress = e => {
-    if(e.key === "Enter") this._updateCity();
+  
+    if(e.key === "Enter") {
+      this._updateCity();
+      // setInterval(this._updateCity(),1000);
+    }
   }
+  
+ 
 
+//   window.setInterval(function ()
+// {
+//     MyMethod();
+// }, 300000)
+
+  //  componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+  // setInterval(function(){_onkeypress();}, 5000);
   render() {
 
     const { city, status } = this.props;
@@ -37,6 +56,7 @@ class Dashboard extends Component {
               onKeyPress={this._onkeyPress}
               placeholder={city}
             />
+            
             <input
               type="button"
               value="&gt;"

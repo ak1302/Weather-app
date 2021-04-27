@@ -1,4 +1,5 @@
 import React from "react";
+
 import fewCloudsN from "../icon/few clouds night.png";
 import clearDay from "../icon/clear-day.svg";
 import partlyd from "../icon/partly-cloudy-day.svg";
@@ -17,6 +18,7 @@ import thunderstorm from "../icon/thunderstorm.svg";
 import tornado from "../icon/tornado.svg";
 import wind from "../icon/wind.svg";
 import fog from "../icon/fog.svg";
+
 
 const DetailedInfo = ({ data }) => {
 
@@ -45,17 +47,16 @@ const DetailedInfo = ({ data }) => {
    }  
  
   const displayMoreInfo = (item, i) => {
-    // <img className="img-icon" src={getdes(item)} />
-    //  console.log(data[0].weather[0].icon)
     return (
       <div className="hourly-info" key={i}>
-        {/* <img src={this._getIcon(item)} /> */}
+    
         <img className="img-icon" src={getdes(item)} />
         <div className="hour-temperature">
           {`${Math.round(item.main.temp)}°C`}
         </div>
         <div className="hour-of-the-day">
           {`${getHour(item.dt * 1000)}:00`}
+      
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DetailedInfo from "./DetailedInfo";
+
 import fewCloudsN from "../icon/few clouds night.png";
 import clearDay from "../icon/clear-day.svg";
 import partlyd from "../icon/partly-cloudy-day.svg";
@@ -21,6 +22,8 @@ import fog from "../icon/fog.svg";
 
 
 export default class ForecastTiles extends Component {
+ 
+   
   // Filters the data by date and returns an Object containing a list of 5-day forecast.
   _groupByDays = (data) => {
     return data.reduce((list, item) => {
@@ -44,12 +47,12 @@ export default class ForecastTiles extends Component {
     ];
     return daysOfWeek[new Date(data[0].dt * 1000).getDay()];
   };
-
+  
+ 
   // Fetches the icon using the icon code available in the forecast data.
-  // _getIcon = data => `https://openweathermap.org/img/w/${data[0].weather[0].icon}.png`;
-  // _getdesc = data => `../icon/${data[0].weather[0].icon}.svg`;
+
  _getdes = data => {
-    //  data[0].weather[0].description;
+   
     if(data[0].weather[0].icon  === "01d") return clearDay;
     if(data[0].weather[0].icon  === "01n") return clearNight;
     if(data[0].weather[0].description  === "cloudy") return cloudy;
@@ -69,13 +72,21 @@ export default class ForecastTiles extends Component {
     if(data[0].weather[0].description  === "sand/ dust whirls") return wind;
     if(data[0].weather[0].description  === "fog") return fog;
     return clearDay;
+    
    }  
     // console.log(data[0].weather[0].description);
    
 
   // const url='./icon/console.log'
-  // console.log("wind");
+ 
   // console.log(data[0].wind.speed);
+date = data => {
+  
+   var d = data[0].dt_txt;
+   d = d.split(' ')[0];
+   return d;
+   
+}
 
 
   // Gets the Minimum, Maximum and Avg Humidity temperatures of the day.
@@ -84,6 +95,7 @@ export default class ForecastTiles extends Component {
       max.push(item.main.temp_max);
       min.push(item.main.temp_min);
       humidity.push(item.main.humidity);
+     
     });
 
     const minMax = {
@@ -97,6 +109,7 @@ export default class ForecastTiles extends Component {
     );
 
     return (
+     
       <div className="weather-info">
         <div className="min-max">
           <strong>{`Max temp: ${minMax.max}°C`}</strong> /{" "}
@@ -105,7 +118,6 @@ export default class ForecastTiles extends Component {
         <div className="more-info">{`Avg. Humidity: ${avgHumdity}%`}
         <div>{`wind speed: ${Math.round(data[0].wind.speed*3.6)}km/h`}</div>
         </div>
-        
       </div>
     );
   };
@@ -122,20 +134,14 @@ export default class ForecastTiles extends Component {
   render() {
     const { forecasts } = this.props;
     const tiles = Object.values(this._groupByDays(forecasts));
-    let icon;
-    // if (flight.cancelled) {
-    //     status = 'Cancelled';
-    // } else if (flight.arrived) {
-    //     status = 'Arrived';
-    // } else {
-    //     status = 'Regular';
-    // }
+    
     // Edge case:
     // When the webservice returns data for 6 calendar days during evenings as a result of offset,
     // this ensures that we are showing only 5-days of forecast.
     const forecastTiles = tiles.length > 5 ? tiles.slice(0, 5) : tiles;
     return (
       <div className="forecast-tiles">
+       
         {forecastTiles.map((item, i) => (
           <div
             className={`forecast-tile tile-${i}`}
@@ -147,13 +153,9 @@ export default class ForecastTiles extends Component {
           >
             <div className="primary-info">
               <div className="icon">
-                  
-                {/* <img className="img" src={this._getdesc(item)} /> */}
-                {/* <img className="img" src={fewClouds} /> */}
                 <img className="img" src={this._getdes(item)} />
-      
-                {/* <img src={require(`../icon/${this._getdes(item)}.svg`)} /> */}
                 {this._getDayInfo(item)}
+                <p className="Date">{this.date(item)}</p>
               </div>
               {this._getInfo(item)}
             </div>

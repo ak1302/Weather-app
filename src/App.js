@@ -15,10 +15,6 @@ class App extends Component {
     };
   }
    componentDidMount() {
-    setInterval(function () {
-      window.location.reload();
-    }, 300000);
-
     navigator.geolocation.getCurrentPosition(function(position) {
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
@@ -57,7 +53,7 @@ class App extends Component {
         <div className="spinner"></div>
       </div>
     ) : (
-      // <div>
+     
        <div className="wrapper" style={{ backgroundImage: `url(${background})`}}>
         <WeatherForecast data={forecast} />
       </div>

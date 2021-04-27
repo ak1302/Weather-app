@@ -6,17 +6,19 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.17.1",
+    "bootstrap": "^4.6.0",
+    "date-fns-tz": "^1.1.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.1",
-    "bootstrap": "^4.6.0",
     "react-redux": "^5.0.7",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
     "redux": "^3.7.2",
     "url-loader": "^4.1.1",
     "weather-icons": "git+https://github.com/erikflowers/weather-icons.git",
-    "axios": "^0.17.1"
+    "web-vitals": "^1.1.1"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
